@@ -12,8 +12,8 @@
 ##
 image:
   registry: docker.io
-  repository: bitnami/kafka
-  tag: 2.2.0
+  repository: rjemanuele/bitnami-docker-kafka
+  tag: 2.2.1
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -67,6 +67,9 @@ config: |-
 #  zookeeper.connect=ZOOKEEPER_SERVICE_NAME
 #  zookeeper.connection.timeout.ms=6000
 #  group.initial.rebalance.delay.ms=0
+
+additionalConfig: |-
+  # Additional Manual Values can be appended to server.properties here
 
 ## Kafka docker image available customizations
 ## https://github.com/bitnami/bitnami-docker-kafka#configuration

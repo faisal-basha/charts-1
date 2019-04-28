@@ -227,6 +227,11 @@ spec:
           mountPath: /opt/bitnami/kafka/conf/server.properties
           subPath: server.properties
         {{ end }}
+        {{ if .Values.additionalConfig }}
+        - name: kafka-additional-config
+          mountPath: /opt/bitnami/kafka/conf/additional.server.properties
+          subPath: additional.server.properties
+        {{ end }}
         {{ if .Values.auth.enabled }}
         - name: kafka-certificates
           mountPath: /opt/bitnami/kafka/conf/certs/
@@ -269,6 +274,11 @@ spec:
         configMap:
           name: {{ template "kafka.fullname" . }}-configuration
       {{ end }}
+      {{ if .Values.additionalConfig }}
+      - name: kafka-additional-config
+        configMap:
+          name: {{ template "kafka.fullname" . }}-additional-configuration
+      {{ end }}
       {{ if .Values.auth.enabled }}
       - name: kafka-certificates
         secret:
@@ -299,6 +309,6 @@ spec:
       {{- end }}
       {{- end }}
 {{- else }}
-        - name: data
-          emptyDir: {}
+      - name: data
+        emptyDir: {}
 {{- end }}
